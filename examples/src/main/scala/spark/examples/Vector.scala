@@ -4,6 +4,7 @@ class Vector(val elements: Array[Double]) extends Serializable {
   def length = elements.length
   
   def apply(index: Int) = elements(index)
+  def update(index:Int, x: Double) = {elements(index) = x}
 
   def + (other: Vector): Vector = {
     if (length != other.length)
