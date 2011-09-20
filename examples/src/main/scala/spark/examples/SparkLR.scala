@@ -12,7 +12,11 @@ object SparkLR {
   val ITERATIONS = 5
   val rand = new Random(42)
 
-  case class DataPoint(x: Vector, y: Double)
+  case class DataPoint(x: Vector, y: Double){
+    def mag():Double = {
+      return math.sqrt(x.dot(x) + y*y)
+    }
+  }
 
   def generateData = {
     def generatePoint(i: Int) = {
@@ -44,6 +48,8 @@ object SparkLR {
         gradient +=  scale * p.x
       }
       w -= gradient.value
+      println("Iteration " + i + " : " + w)
+      println("gradient value " + gradient.value.dot(gradient.value))
     }
 
     println("Final w: " + w)
